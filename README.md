@@ -126,6 +126,11 @@
  项目源码地址：
  OC 版 ：https://github.com/BAHome/BATextView
  
+ 最新更新时间：2017-06-01 【倒叙】
+ 最新Version：【Version：1.0.1】
+ 更新内容：
+ 1.0.1.1、优化注释
+ 
  最新更新时间：2017-05-27 【倒叙】
  最新Version：【Version：1.0.0】
  更新内容：
@@ -134,6 +139,7 @@
  1.0.0.3、可以自动布局，自适应高度，实时监测输入文字的最大高度
  1.0.0.4、可以实时监测输入文字的最大个数，可以限制最大输入文字字数
  1.0.0.5、用分类整理，无需改动源码即可实现各种自定义功能
+
 
 */
 
@@ -334,6 +340,11 @@ typedef void (^BAKit_TextView_WordDidChangedBlock)(NSInteger current_wordNumber)
 ## 5、更新记录：【倒叙】
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
+ 
+ 最新更新时间：2017-06-01 【倒叙】<br>
+ 最新Version：【Version：1.0.1】<br>
+ 更新内容：<br>
+ 1.0.1.1、优化注释<br>
  
  最新更新时间：2017-05-27 【倒叙】<br>
  最新Version：【Version：1.0.0】<br>
