@@ -78,7 +78,7 @@
 {
     UITextView *textView = notification.object;
 
-    if (self.ba_maxWordLimitNumber)
+    if (self.ba_maxWordLimitNumber && [self isFirstResponder])
     {
         NSString *toBeString = textView.text;
         // 键盘输入模式

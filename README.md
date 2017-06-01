@@ -13,9 +13,7 @@
 * 5、用分类整理，无需改动源码即可实现各种自定义功能
 
 ## 2、图片示例
-<!--![BATextView1](https://github.com/BAHome/BATextView/blob/master/Images/BATextView1.png)
-![BATextView2](https://github.com/BAHome/BATextView/blob/master/Images/BATextView2.png)
-![BATextView4](https://github.com/BAHome/BATextView/blob/master/Images/BATextView4.png)-->
+![BATextView](https://github.com/BAHome/BATextView/blob/master/Images/BATextView.gif)
 
 ## 3、安装、导入示例和源码地址
 * 1、pod 导入【最新版本：![](https://img.shields.io/cocoapods/v/BATextView.svg?style=flat)】： <br>
