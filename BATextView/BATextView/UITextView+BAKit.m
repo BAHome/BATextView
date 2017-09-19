@@ -9,7 +9,8 @@
 #import "UITextView+BAKit.h"
 #import <objc/runtime.h>
 
-#import "BATextView.h"
+#import "BAKit_ConfigurationDefine.h"
+
 
 @interface UITextView ()
 
@@ -17,6 +18,11 @@
  存储最后一次改变高度后的值
  */
 @property(nonatomic, assign) CGFloat ba_lastHeight;
+
+/**
+ 判断是否是 placeHolder
+ */
+@property(nonatomic, assign) BOOL ba_isNotPlaceHolder;
 
 @end
 
@@ -31,7 +37,7 @@
 #pragma mark - custom method
 - (BOOL)ba_textView_isEmpty
 {
-    return (self == nil || self.text == nil || self.text.length <= 0 || [self.text isEqualToString:@""] || [self.text isEqualToString:self.ba_placeholder]);
+    return (self == nil || self.text == nil || self.text.length <= 0 || [self.text isEqualToString:@""] || !self.ba_isNotPlaceHolder);
 }
 
 - (void)ba_textView_addNoti
@@ -60,6 +66,7 @@
         self.text = @"";
         self.font = self.ba_textFont;
         self.textColor = self.ba_textColor;
+        self.ba_isNotPlaceHolder = YES;
     }
 }
 
@@ -218,8 +225,12 @@
 - (void)setBa_placeholder:(NSString *)ba_placeholder
 {
     BAKit_Objc_setObj(@selector(ba_placeholder), ba_placeholder);
-    self.text = self.ba_placeholder;
-    [self ba_textView_default];
+    if (!self.ba_isNotPlaceHolder)
+    {
+        self.text = self.ba_placeholder;
+        [self ba_textView_default];
+        self.ba_isNotPlaceHolder = NO;
+    }
 }
 
 - (NSString *)ba_placeholder
@@ -341,6 +352,16 @@
 - (BAKit_TextView_WordDidChangedBlock)ba_textView_WordDidChangedBlock
 {
     return BAKit_Objc_getObj;
+}
+
+- (void)setBa_isNotPlaceHolder:(BOOL)ba_isNotPlaceHolder
+{
+    BAKit_Objc_setObj(@selector(ba_isNotPlaceHolder), @(ba_isNotPlaceHolder));
+}
+
+- (BOOL)ba_isNotPlaceHolder
+{
+    return [BAKit_Objc_getObj boolValue];
 }
 
 @end

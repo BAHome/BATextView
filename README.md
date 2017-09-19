@@ -32,120 +32,6 @@
 ## 4、BATextView 的类结构及 demo 示例
 ![BATextView](https://github.com/BAHome/BATextView/blob/master/Images/BATextView.png)
 
-### BATextView.h
-```
-#ifndef BATextView_h
-#define BATextView_h
-
-#import "UITextView+BAKit.h"
-
-#define BAKit_Objc_setObj(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-
-#define BAKit_Objc_setObjCOPY(key, value) objc_setAssociatedObject(self, key, value, OBJC_ASSOCIATION_COPY)
-
-#define BAKit_Objc_getObj objc_getAssociatedObject(self, _cmd)
-
-#define BAKit_Objc_exchangeMethodAToB(methodA,methodB) method_exchangeImplementations(class_getInstanceMethod([self class], methodA),class_getInstanceMethod([self class], methodB));
-
-#pragma mark - NotiCenter
-#define BAKit_NotiCenter [NSNotificationCenter defaultCenter]
-
-/*!
- *  获取屏幕宽度和高度
- */
-#define BAKit_SCREEN_WIDTH ((([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait) || ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)) ? [[UIScreen mainScreen] bounds].size.width : [[UIScreen mainScreen] bounds].size.height)
-
-#define BAKit_SCREEN_HEIGHT ((([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortrait) || ([UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationPortraitUpsideDown)) ? [[UIScreen mainScreen] bounds].size.height : [[UIScreen mainScreen] bounds].size.width)
-
-#pragma mark - weak / strong
-#define BAKit_WeakSelf        @BAKit_Weakify(self);
-#define BAKit_StrongSelf      @BAKit_Strongify(self);
-
-/*！
- * 强弱引用转换，用于解决代码块（block）与强引用self之间的循环引用问题
- * 调用方式: `@BAKit_Weakify`实现弱引用转换，`@BAKit_Strongify`实现强引用转换
- *
- * 示例：
- * @BAKit_Weakify
- * [obj block:^{
- * @strongify_self
- * self.property = something;
- * }];
- */
-#ifndef BAKit_Weakify
-#if DEBUG
-#if __has_feature(objc_arc)
-#define BAKit_Weakify(object) autoreleasepool{} __weak __typeof__(object) weak##_##object = object;
-#else
-#define BAKit_Weakify(object) autoreleasepool{} __block __typeof__(object) block##_##object = object;
-#endif
-#else
-#if __has_feature(objc_arc)
-#define BAKit_Weakify(object) try{} @finally{} {} __weak __typeof__(object) weak##_##object = object;
-#else
-#define BAKit_Weakify(object) try{} @finally{} {} __block __typeof__(object) block##_##object = object;
-#endif
-#endif
-#endif
-
-/*！
- * 强弱引用转换，用于解决代码块（block）与强引用对象之间的循环引用问题
- * 调用方式: `@BAKit_Weakify(object)`实现弱引用转换，`@BAKit_Strongify(object)`实现强引用转换
- *
- * 示例：
- * @BAKit_Weakify(object)
- * [obj block:^{
- * @BAKit_Strongify(object)
- * strong_object = something;
- * }];
- */
-#ifndef BAKit_Strongify
-#if DEBUG
-#if __has_feature(objc_arc)
-#define BAKit_Strongify(object) autoreleasepool{} __typeof__(object) object = weak##_##object;
-#else
-#define BAKit_Strongify(object) autoreleasepool{} __typeof__(object) object = block##_##object;
-#endif
-#else
-#if __has_feature(objc_arc)
-#define BAKit_Strongify(object) try{} @finally{} __typeof__(object) object = weak##_##object;
-#else
-#define BAKit_Strongify(object) try{} @finally{} __typeof__(object) object = block##_##object;
-#endif
-#endif
-#endif
-
-/*!
- *********************************************************************************
- ************************************ 更新说明 ************************************
- *********************************************************************************
- 
- 欢迎使用 BAHome 系列开源代码 ！
- 如有更多需求，请前往：https://github.com/BAHome
- 
- 项目源码地址：
- OC 版 ：https://github.com/BAHome/BATextView
- 
- 最新更新时间：2017-06-01 【倒叙】
- 最新Version：【Version：1.0.1】
- 更新内容：
- 1.0.1.1、优化注释
- 
- 最新更新时间：2017-05-27 【倒叙】
- 最新Version：【Version：1.0.0】
- 更新内容：
- 1.0.0.1、可以自定义 placeholder的(字体、颜色)、文字(字体、颜色)
- 1.0.0.2、可以自定义 输入文字的(字体、颜色)、文字(字体、颜色)
- 1.0.0.3、可以自动布局，自适应高度，实时监测输入文字的最大高度
- 1.0.0.4、可以实时监测输入文字的最大个数，可以限制最大输入文字字数
- 1.0.0.5、用分类整理，无需改动源码即可实现各种自定义功能
-
-
-*/
-
-#endif /* BATextView_h */
-```
-
 ### UITextView+BAKit.h
 ```
 #import <UIKit/UIKit.h>
@@ -341,6 +227,11 @@ typedef void (^BAKit_TextView_WordDidChangedBlock)(NSInteger current_wordNumber)
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
+ 最新更新时间：2017-09-19 【倒叙】
+ 最新Version：【Version：1.0.2】
+ 更新内容：
+ 1.0.2.1、优化 - (BOOL)ba_textView_isEmpty; 方法，修复 输入文字和 placeholder 文字一样时判断无效的 bug(感谢群里 [@成都-刘军  11:52:23](https://github.com/liujunliuhong ) 同学提出的 bug！) <br>
+ 
  最新更新时间：2017-06-01 【倒叙】<br>
  最新Version：【Version：1.0.1】<br>
  更新内容：<br>
@@ -400,7 +291,7 @@ git：[https://github.com/CrazyCoderShi](https://github.com/CrazyCoderShi) <br>
 > 开发使用 最新版本 Xcode，理论上支持 iOS 8 及以上版本，如有版本适配问题，请及时反馈！多谢合作！
 
 ## 9、感谢
-> 感谢 BAHome 团队成员倾力合作，后期会推出一系列 常用 UI 控件的封装，大家有需求得也可以在 issue 提出，如果合理，我们会尽快推出新版本！<br>
+> 感谢 [【BAHome】](https://github.com/BAHome) 团队成员倾力合作，后期会推出一系列 常用 UI 控件的封装，大家有需求得也可以在 issue 提出，如果合理，我们会尽快推出新版本！<br>
 
-> BAHome 的发展离不开小伙伴儿的信任与推广，再次感谢各位小伙伴儿的支持！
+>  [【BAHome】](https://github.com/BAHome)  的发展离不开小伙伴儿的信任与推广，再次感谢各位小伙伴儿的支持！
 

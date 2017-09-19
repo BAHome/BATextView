@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name         = 'BATextView'
-    s.version      = '1.0.1'
+    s.version      = '1.0.2'
 s.summary      = 'UITextView 的封装，可以自定义 placeholder、文字的(字体、颜色)、文字(字体、颜色)，自适应高度，实时监测输入文字的最大高度，实时监测输入文字的最大个数，可以限制最大输入文字字数'
     s.homepage     = 'https://github.com/BAHome/BATextView'
     s.license      = 'MIT'

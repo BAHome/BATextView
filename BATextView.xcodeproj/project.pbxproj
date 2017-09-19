@@ -30,6 +30,8 @@
 		C48E37491EDFBC6D0047A7C8 /* BATextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BATextView.h; sourceTree = "<group>"; };
 		C48E374A1EDFBCCD0047A7C8 /* UITextView+BAKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+BAKit.h"; sourceTree = "<group>"; };
 		C48E374B1EDFBCCD0047A7C8 /* UITextView+BAKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+BAKit.m"; sourceTree = "<group>"; };
+		C49DD9CB1F70B62C00E0F13F /* BAKit_ConfigurationDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAKit_ConfigurationDefine.h; sourceTree = "<group>"; };
+		C49DD9CC1F70B67900E0F13F /* BATextView_Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BATextView_Version.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,8 @@
 				C48E37491EDFBC6D0047A7C8 /* BATextView.h */,
 				C48E374A1EDFBCCD0047A7C8 /* UITextView+BAKit.h */,
 				C48E374B1EDFBCCD0047A7C8 /* UITextView+BAKit.m */,
+				C49DD9CB1F70B62C00E0F13F /* BAKit_ConfigurationDefine.h */,
+				C49DD9CC1F70B67900E0F13F /* BATextView_Version.h */,
 			);
 			path = BATextView;
 			sourceTree = "<group>";
