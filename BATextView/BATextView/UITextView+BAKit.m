@@ -115,7 +115,31 @@
         {
             if (toBeString.length >= self.ba_maxWordLimitNumber)
             {
-                textView.text = [toBeString substringToIndex:self.ba_maxWordLimitNumber];
+                
+                //判断是否只普通的字符或asc码(对于中文和表情返回NO)
+                BOOL asc = [toBeString canBeConvertedToEncoding:NSASCIIStringEncoding];
+                
+                if (asc) {
+                    textView.text = [toBeString substringToIndex:self.ba_maxWordLimitNumber];
+                }
+                else
+                {
+                    __block NSInteger idx = 0;
+                    __block NSString  *trimString = @"";//截取出的字串
+                    //使用字符串遍历，这个方法能准确知道每个emoji是占一个unicode还是两个
+                    [toBeString enumerateSubstringsInRange:NSMakeRange(0, toBeString.length)
+                                                   options:NSStringEnumerationByComposedCharacterSequences
+                                                usingBlock: ^(NSString* substring, NSRange substringRange, NSRange enclosingRange, BOOL* stop) {
+                                                    
+                                                    if (idx >= self.ba_maxWordLimitNumber - 1) {
+                                                        *stop = YES; //取出所需要就break，提高效率
+                                                        return ;
+                                                    }
+                                                    trimString = [trimString stringByAppendingString:substring];
+                                                    idx++;
+                                                }];
+                    textView.text = trimString;
+                }
             }
         }
 //        NSLog(@"内容：%@，\n字数：%lu", textView.text, (unsigned long)textView.text.length);
