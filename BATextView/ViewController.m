@@ -219,7 +219,7 @@ BAKit_Color_RGB(u_char r,u_char g, u_char b) {
          @param limitNumber 最大字数限制
          @param block BAKit_TextView_WordDidChangedBlock
          */
-        [_textView ba_textView_wordLimitWithMaxWordLimitNumber:60 block:^(NSInteger current_wordNumber) {
+        [_textView ba_textView_wordLimitWithMaxWordLimitNumber:10 block:^(NSInteger current_wordNumber) {
             BAKit_StrongSelf
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.label3.text = [NSString stringWithFormat:@"%ld/%ld", (long)current_wordNumber, (long)self.textView.ba_maxWordLimitNumber];
