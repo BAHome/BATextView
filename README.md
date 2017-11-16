@@ -276,7 +276,7 @@ typedef void (^BAKit_TextView_ShouldChangeTextInRangeBlock)(UITextView *textView
  更新内容：<br>
  1.0.3.1、优化输入表情的时候，最大字数限制出现的特殊情况<br>
  1.0.3.2、优化输入文字后收回键盘后再次输入之前的内容消失的问题<br>
- 1.0.3.3、【方法新增】：默认 self.text 文字时的属性 ba_text：TextView 默认 text，注意：一定要用 ba_text 设置，用系统的 self.text 设置无效，此外，如果有默认 text，一定要在 ba_placeholder 赋值之前赋值 ba_text，要不然会出现文字颜色错乱！<br>
+ 1.0.3.3、【方法新增】：默认 self.text 文字时的属性 ba_text：TextView 默认 text，注意：一定要用 ba_text 设置，用系统的 self.text 设置无效，此外，如果有默认 text，一定要在 ba_placeholder 赋值之前赋值 ba_text，要不然会出现文字颜色错乱！感谢群里[@北京-张浩](https://github.com/907064772 )大神的优化！<br>
  1.0.3.4、【方法新增】：新增 UITextView 代理 shouldChangeTextInRange 改成 block （ba_textView_ShouldChangeTextInRangeBlock）返回，使用更加方便！  <br>
  1.0.3.5、【方法替换】：原有 typedef void (^BAKit_TextView_WordDidChangedBlock)(NSInteger current_length)，替换成 typedef void (^BAKit_TextView_WordDidChangedBlock)(NSString *current_text) <br>
 
