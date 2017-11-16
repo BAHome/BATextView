@@ -129,7 +129,7 @@
 				TargetAttributes = {
 					C48E372D1EDFBAA60047A7C8 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = 8JQ2PK6XN8;
+						DevelopmentTeam = JB3QR65942;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -293,9 +293,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8JQ2PK6XN8;
+				DEVELOPMENT_TEAM = JB3QR65942;
 				INFOPLIST_FILE = BATextView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.boaihome.BATextView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -306,9 +306,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8JQ2PK6XN8;
+				DEVELOPMENT_TEAM = JB3QR65942;
 				INFOPLIST_FILE = BATextView/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.boaihome.BATextView;
 				PRODUCT_NAME = "$(TARGET_NAME)";

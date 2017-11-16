@@ -77,7 +77,8 @@ BAKit_Color_RGB(u_char r,u_char g, u_char b) {
     [self.view endEditing:YES];
 }
 
-- (void)viewDidLayoutSubviews {
+- (void)viewDidLayoutSubviews
+{
     [super viewDidLayoutSubviews];
     
     CGFloat min_x = 0;
@@ -86,7 +87,7 @@ BAKit_Color_RGB(u_char r,u_char g, u_char b) {
     CGFloat min_h = 0;
     
     min_x = 20;
-    min_y = 80;
+    min_y = 120;
     min_w = BAKit_SCREEN_WIDTH - min_x * 2;
     min_h = BAKit_LabelSizeWithTextAndWidthAndFont(_label1.text, min_w, _label1.font).height;
     
@@ -162,15 +163,21 @@ BAKit_Color_RGB(u_char r,u_char g, u_char b) {
          文字颜色，注意：一定要用 ba_textColor 设置，用系统的 self.textColor 设置无效
          */
         _textView1.ba_textColor = [UIColor purpleColor];
-        
         _textView1.backgroundColor = BAKit_Color_Gray_11;
+        
+        /**
+         TextView 默认 text，注意：一定要用 ba_text 设置，用系统的 self.text 设置无效，此外，如果有默认 text，一定要在 ba_placeholder 赋值之前赋值 ba_text，要不然会出现文字颜色错乱！
+         */
+        _textView1.ba_text = @"HelloWord！";
+
         // 自定义 placeholder
-        _textView1.ba_placeholder = @"这里是 placeholder ！";
+        _textView1.ba_placeholder = @"test";
+//        _textView1.ba_placeholder = @"这里是 placeholder ！";
         // 自定义 placeholder 颜色
         _textView1.ba_placeholderColor = [UIColor greenColor];
         // 自定义 placeholder 字体
         _textView1.ba_placeholderFont = [UIFont systemFontOfSize:16];
-        
+
         [self.view addSubview:_textView1];
     }
     return _textView1;
@@ -180,7 +187,7 @@ BAKit_Color_RGB(u_char r,u_char g, u_char b) {
 {
     if (!_textView)
     {
-        _textView = [UITextView new];
+        _textView = [[UITextView alloc] init];
         _textView.userInteractionEnabled = YES;
         /**
          文字字体，注意：一定要用 ba_textFont 设置，用系统的 self.font 设置无效
@@ -198,6 +205,9 @@ BAKit_Color_RGB(u_char r,u_char g, u_char b) {
         _textView.ba_placeholderColor = [UIColor orangeColor];
         // 自定义 placeholder 字体
         _textView.ba_placeholderFont = [UIFont systemFontOfSize:25];
+        
+        // 设置代理
+        [_textView ba_textViewWithDelegate:_textView];
         
         /**
          快速设定自动布局
@@ -219,10 +229,10 @@ BAKit_Color_RGB(u_char r,u_char g, u_char b) {
          @param limitNumber 最大字数限制
          @param block BAKit_TextView_WordDidChangedBlock
          */
-        [_textView ba_textView_wordLimitWithMaxWordLimitNumber:10 block:^(NSInteger current_wordNumber) {
+        [_textView ba_textView_wordLimitWithMaxWordLimitNumber:30 block:^(NSString *current_text) {
             BAKit_StrongSelf
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.label3.text = [NSString stringWithFormat:@"%ld/%ld", (long)current_wordNumber, (long)self.textView.ba_maxWordLimitNumber];
+                self.label3.text = [NSString stringWithFormat:@"%ld/%ld", (long)current_text.length, (long)self.textView.ba_maxWordLimitNumber];
                 [self.view setNeedsLayout];
             });
         }];
