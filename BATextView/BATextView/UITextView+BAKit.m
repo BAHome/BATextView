@@ -107,27 +107,14 @@
             //防止当text.length + caninputlen < 0时，使得rg.length为一个非法最大正数出错
             NSRange rg = {0, MAX(len, 0)};
             if (rg.length > 0){
-                NSString *s =@"";
+                NSString *s = @"";
                 //判断是否只普通的字符或asc码(对于中文和表情返回NO)
                 BOOL asc = [text canBeConvertedToEncoding:NSASCIIStringEncoding];
                 if (asc) {
                     s = [text substringWithRange:rg];//因为是ascii码直接取就可以了不会错
                 }else{
-                    __block NSInteger idx =0;
-                    __block NSString  *trimString = @"";//截取出的字串
-                    //使用字符串遍历，这个方法能准确知道每个emoji是占一个unicode还是两个
-                    [text enumerateSubstringsInRange:NSMakeRange(0, [text length])
-                                             options:NSStringEnumerationByComposedCharacterSequences
-                                          usingBlock: ^(NSString* substring, NSRange substringRange, NSRange enclosingRange,BOOL* stop) {
-                                              idx += substringRange.length;
-                                              if (idx >= rg.length) {
-                                                  *stop = YES;//取出所需要就break，提高效率
-                                                  return ;
-                                              }
-                                              trimString = [trimString stringByAppendingString:substring];
-                                              
-                                          }];
-                    s = trimString;
+                    s = [self enumerateSubstring:text to:rg.length];
+                    
                 }
                 //rang是指从当前光标处进行替换处理(注意如果执行此句后面返回的是YES会触发didchange事件)
                 [textView setText:[textView.text  stringByReplacingCharactersInRange:range withString:s]];
@@ -154,9 +141,8 @@
     NSString  *nsTextContent = textView.text;
     NSInteger existTextNum = nsTextContent.length;
     if (existTextNum >self.ba_maxWordLimitNumber){
-        //截取到最大位置的字符(由于超出截部分在should时被处理了所在这里这了提高效率不再判断)
-        NSString *s = [nsTextContent substringToIndex:self.ba_maxWordLimitNumber];
-        [textView setText:s];
+//        NSString *s = [nsTextContent substringToIndex:self.ba_maxWordLimitNumber];
+        [textView setText:[self enumerateSubstring:nsTextContent to:self.ba_maxWordLimitNumber]];
     }
     //不让显示负数,字数label
 //    NSString * testStr = [NSString stringWithFormat:@"%ld/%ld", MAX(0, self.ba_maxWordLimitNumber - existTextNum), self.ba_maxWordLimitNumber];
@@ -192,7 +178,32 @@
             [self ba_scrollToBottomAnimated:NO];
         }
     }
+}
 
+/**
+ *  遍历截取字符串方法
+ *
+ *  @param originString       截取前的字符串
+ *  @param toIndex      截取到什么位置
+ *  @return 截取之后的字符串
+ */
+- (NSString *)enumerateSubstring:(NSString *)originString to:(NSUInteger)toIndex{
+    //截取到最大位置的字符(由于超出截部分在should时被处理了所在这里这了提高效率不再判断)
+    __block NSInteger idx =0;
+    __block NSString  *subsequentString = @"";//截取出的字串
+    //使用字符串遍历，这个方法能准确知道每个emoji是占一个unicode还是两个
+    [originString enumerateSubstringsInRange:NSMakeRange(0, [originString length])
+                                      options:NSStringEnumerationByComposedCharacterSequences
+                                   usingBlock: ^(NSString* substring, NSRange substringRange, NSRange enclosingRange,BOOL* stop) {
+                                       idx += substringRange.length;
+                                       if (idx >= toIndex) {
+                                           *stop = YES;//取出所需要就break，提高效率
+                                           return ;
+                                       }
+                                       subsequentString = [subsequentString stringByAppendingString:substring];
+                                       
+                                   }];
+    return subsequentString;
 }
 
 #pragma mark - 通知事件处理
@@ -212,7 +223,7 @@
         self.text = @"";
         self.font = self.ba_textFont;
         self.textColor = self.ba_textColor;
-        self.ba_isNotPlaceHolder = YES;
+//        self.ba_isNotPlaceHolder = YES;
     }
 }
 
@@ -305,6 +316,8 @@
 {
     BAKit_Objc_setObj(@selector(ba_text), ba_text);
     self.text = ba_text;
+    self.textColor = self.ba_textColor;
+    self.font = self.ba_textFont;
     [self ba_textView_default];
 }
 

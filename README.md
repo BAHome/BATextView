@@ -270,6 +270,10 @@ typedef void (^BAKit_TextView_ShouldChangeTextInRangeBlock)(UITextView *textView
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
+ 最新更新时间：2018-03-22 【倒叙】<br>
+ 最新Version：【Version：1.0.4】<br>
+ 更新内容：<br>
+ 1.0.4.1、修改BUG：感谢 Github同学提出 [Issues](https://github.com/BAHome/BATextView/issues/4) 调用ba_text赋值后和ba_placeholder颜色字体大小一样的BUG。现已修复该问题
  
  最新更新时间：2017-11-15 【倒叙】<br>
  最新Version：【Version：1.0.3】<br>
@@ -332,13 +336,14 @@ git：[https://github.com/chenjipdc](https://github.com/chenjipdc) <br>
 QQ：459643690 <br> 
 git：[https://github.com/renzifeng](https://github.com/renzifeng) <br>
 
-> 吴丰收 <br> 
-QQ：498121294 <br> 
-
 > 石少庸 <br> 
 QQ：363605775 <br> 
 git：[https://github.com/CrazyCoderShi](https://github.com/CrazyCoderShi) <br>
 简书：[http://www.jianshu.com/u/0726f4d689a3](http://www.jianshu.com/u/0726f4d689a3)
+
+> 张浩 <br> 
+QQ：907064772 <br> 
+git：[https://github.com/907064772](https://github.com/907064772) <br>
 
 ## 8、开发环境 和 支持版本
 > 开发使用 最新版本 Xcode，理论上支持 iOS 9 及以上版本，如有版本适配问题，请及时反馈！多谢合作！
