@@ -270,9 +270,10 @@ typedef void (^BAKit_TextView_ShouldChangeTextInRangeBlock)(UITextView *textView
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
- 最新更新时间：2018-03-22 【倒叙】<br>
+ 最新更新时间：2018-06-14 【倒叙】<br>
  最新Version：【Version：1.0.4】<br>
  更新内容：<br>
+ 1.0.4.2、修改BUG：使用关联词造成的返回字数bug。现已修复该问题
  1.0.4.1、修改BUG：感谢 Github同学提出 [Issues](https://github.com/BAHome/BATextView/issues/4) 调用ba_text赋值后和ba_placeholder颜色字体大小一样的BUG。现已修复该问题
  
  最新更新时间：2017-11-15 【倒叙】<br>

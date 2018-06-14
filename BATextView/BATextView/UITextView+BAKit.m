@@ -78,6 +78,12 @@
     
     if (self == textView)
     {
+    //      关联词不执行textViewDidChange,统一在该方法提前返回字符数
+        if (self.ba_textView_WordDidChangedBlock)
+        {
+            self.ba_textView_WordDidChangedBlock(textView.text);
+        }
+        
     //    删除或者其他操作
         if ([text isEqual:@""] && range.length >= 1) {
             return YES;
@@ -147,10 +153,10 @@
     //不让显示负数,字数label
 //    NSString * testStr = [NSString stringWithFormat:@"%ld/%ld", MAX(0, self.ba_maxWordLimitNumber - existTextNum), self.ba_maxWordLimitNumber];
     
-    if (self.ba_textView_WordDidChangedBlock)
-    {
-        self.ba_textView_WordDidChangedBlock(textView.text);
-    }
+//    if (self.ba_textView_WordDidChangedBlock)
+//    {
+//        self.ba_textView_WordDidChangedBlock(textView.text);
+//    }
     
     // 计算高度，extern double ceil(double); 如果参数是小数，则求最小的整数但不小于本身.
     CGFloat current_textHeight = ceil([self sizeThatFits:CGSizeMake(self.bounds.size.width, CGFLOAT_MAX)].height);
