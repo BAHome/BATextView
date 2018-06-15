@@ -270,6 +270,12 @@ typedef void (^BAKit_TextView_ShouldChangeTextInRangeBlock)(UITextView *textView
  欢迎使用 [【BAHome】](https://github.com/BAHome) 系列开源代码 ！
  如有更多需求，请前往：[【https://github.com/BAHome】](https://github.com/BAHome) 
  
+ 
+ 最新更新时间：2018-06-15 【倒叙】<br>
+ 最新Version：【Version：1.0.5】<br>
+ 更新内容：<br>
+ 1.0.5.1、修改BUG：感谢 群里同学（@深圳-Apec）提出 [Issues](https://github.com/BAHome/BATextView/is
+ 
  最新更新时间：2018-06-14 【倒叙】<br>
  最新Version：【Version：1.0.4】<br>
  更新内容：<br>
